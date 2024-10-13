@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Micro-Coach</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            width: 400px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .message-box {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #34495e;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #95a5a6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mental Health Micro-Coach</h1>
+    <div class="message-box" id="messageBox">
+        Hello! How are you feeling right now?
+    </div>
+
+    <form id="moodForm">
+        <input type="text" id="moodInput" placeholder="Enter your current mood..." required />
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    <div class="footer">
+        <p>Your mental health matters. 🌱</p>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('moodForm');
+    const messageBox = document.getElementById('messageBox');
+    const moodInput = document.getElementById('moodInput');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const mood = moodInput.value.trim().toLowerCase();
+        let response = "";
+
+        if (mood.includes("stressed")) {
+            response = `I hear that you're feeling stressed. Try the "Box Breathing" technique: Inhale for 4 seconds, hold for 4, exhale for 4, and hold again for 4. It may help ease things up a bit. 
+            What’s your next mood?`;
+        } else if (mood.includes("anxious")) {
+            response = `Thank you for sharing that you're feeling anxious. You might find the 5-4-3-2-1 grounding technique helpful: Name 5 things you see, 4 you can touch, 3 you hear, 2 you smell, and 1 you taste. 
+            How are you feeling now?`;
+        } else if (mood.includes("okay") || mood.includes("fine")) {
+            response = `I'm glad to hear that you're feeling okay! Even on good days, it's great to take a moment for yourself. 
+            What’s your next mood?`;
+        } else if (mood.includes("sad")) {
+            response = `I'm sorry you're feeling sad. It can be helpful to journal a few thoughts or reach out to someone close. I'm here with you. 
+            What’s your next mood?`;
+        } else {
+            response = `Thank you for sharing. I'm here for you. Let me know if you'd like a recommendation or technique to try. 
+            What’s your next mood?`;
+        }
+
+        messageBox.innerHTML = response;
+        moodInput.value = "";
+    });
+</script>
+
+</body>
+</html>
